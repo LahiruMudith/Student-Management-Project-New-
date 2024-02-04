@@ -1,0 +1,21 @@
+.backgroundImage {
+    width: 99.9vw;
+    height: 99.3vh;
+    z-index: -1;
+    position: fixed;
+}
+
+.loginBtn {
+    color: black !important;
+    position: relative;
+    left: 78vw;
+    margin: 10px;
+    top: 1vh;
+}
+.contactUsBtn {
+    color: black !important;
+    position: relative;
+    left: 88vw;
+    margin: 10px;
+    top: 1vh;
+}

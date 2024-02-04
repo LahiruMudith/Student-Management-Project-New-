@@ -1,0 +1,14 @@
+.registerBtn {
+        background-color: #9b39f7 !important;
+        border-radius: 15px !important;
+        position: relative;
+        top: 28vw;
+        left: 25vh;
+}
+.textFeild {
+        margin: 20px!important;
+        width: 34vw;
+}
+.popupRegisterButton {
+        color: #9b39f7!important;
+}
