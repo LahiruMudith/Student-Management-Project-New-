@@ -6,12 +6,14 @@ const routes = [
     {
         path: '/addStudent',
         key: 'addStudent',
-        icon: <img src={viewStudentIcon} style={{width: '2vw', padding: '0.5vw'}}/>
+        icon: <img src={addStudentIcon} style={{width: '2vw', padding: '0.5vw'}}/>,
+        name: 'Add Student'
     },
     {
         path: '/viewStudent',
         key: 'viewStudent',
-        icon: <img src={addStudentIcon} style={{width: '2vw', padding: '0.5vw'}}/>
+        icon: <img src={viewStudentIcon} style={{width: '2vw', padding: '0.5vw'}}/>,
+        name: 'View Student'
     }
 ]
 
