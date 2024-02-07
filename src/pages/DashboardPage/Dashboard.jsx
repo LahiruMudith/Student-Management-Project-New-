@@ -4,8 +4,9 @@ import './Dashboard.css'
 import IconButton from "@mui/material/IconButton";
 import routes from "../../common/navigation/routes.jsx";
 import {Link, Navigate, Route, Routes} from "react-router-dom";
-import AddStudentPage from "../AddStudentPage/AddStudentPage.jsx";
-import ViewStudentPage from "../ViewStudentPage/ViewStudentPage.jsx";
+import LogoutIcon from '@mui/icons-material/Logout';
+import instance from "../../services/AxiosOrder.jsx";
+import Swal from 'sweetalert2'
 
 export default function Dashboard() {
     const [value, setValue] = React.useState(0);
@@ -16,6 +17,28 @@ export default function Dashboard() {
         ))
 
     )
+
+    const logoutClick = () => {
+        instance({
+            method: "get",
+            url: "/logout",
+        }).then(function (response) {
+            Swal.fire({
+                title: 'Do You Want To Log Out!',
+                icon: 'info',
+                confirmButtonText: 'Log Out',
+                cancelButtonText: 'Cancle',
+                showCancelButton: true,
+            }).then( (result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem('loginkey')
+                    location.reload()
+                }
+
+            })
+
+        });
+    }
 
     return (
         <Box className={'MainBox'}>
@@ -34,6 +57,12 @@ export default function Dashboard() {
                                 ))
                             }
                         </ul>
+                <IconButton
+                    onClick={() => logoutClick()}
+                    sx={{fontSize: '1.4vw', fontWeight: 'bold', color: 'white', position:'fixed', bottom:'3vh', right:'78vw'}}>
+                    <LogoutIcon/>
+                </IconButton>
+
             </Box>
             <Box sx={{
                 backgroundColor: 'white',

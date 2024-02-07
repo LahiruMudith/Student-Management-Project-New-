@@ -50,9 +50,11 @@ export default function LoginPopupMenu() {
                         Swal.fire({
                             title: 'Login Successfully!',
                             icon: 'success',
+                        }).then(function () {
+                            window.location.reload()
                         })
                     handleClose()
-                    window.location.reload()
+
 
                 }
 

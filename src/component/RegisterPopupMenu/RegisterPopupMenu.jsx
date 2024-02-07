@@ -36,6 +36,18 @@ export default function RegisterPopupMenu() {
         setOpen(false);
     };
 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
     const Register = () => {
         instance.post('/register', {
             name: name,
@@ -44,10 +56,10 @@ export default function RegisterPopupMenu() {
         })
             .then((response) => {
                 console.log(response.data)
-                Swal.fire({
-                    title: 'Register Successfully!',
-                    icon: 'success',
-                })
+                Toast.fire({
+                    icon: "success",
+                    title: "Register successfully"
+                });
                 handleClose()
             }, (error) => {
                 console.log(error);

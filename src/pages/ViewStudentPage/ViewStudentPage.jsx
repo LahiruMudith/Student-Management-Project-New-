@@ -16,10 +16,10 @@ export default function ViewStudentPage() {
 
     return (
         <>
-            <Box sx={{display:'flex', flexWrap:"wrap", border:'2px solid red', height:'87vh'}}>
+            <Box sx={{display:'flex', flexWrap:"wrap", border:'2px solid red', height:'50px'}}>
                 {
                     data.map((val, index) => (
-                        <Card sx={{ minWidth: '22.5vw',height:'auto', margin:'10px', borderRadius:'10px', boxShadow:'5'}}>
+                        <Card key={val.id} sx={{ minWidth: '22.5vw', height:'25vh', margin:'10px', borderRadius:'10px', boxShadow:'5', border:'1px solid #e10c0c'}}>
                             <CardContent>
                                 <List sx={{fontWeight:'bold', lineHeight:'5vh'}}>
                                     <p>Name : <span style={{fontWeight:'500'}}>{val.student_name}</span> </p>
@@ -31,16 +31,6 @@ export default function ViewStudentPage() {
                         </Card>
                     ))
                 }
-                {/*<Card sx={{ minWidth: '22.5vw',height:'20vh', margin:'10px', borderRadius:'10px', boxShadow:'5'}}>*/}
-                {/*    <CardContent>*/}
-                {/*        <List sx={{fontWeight:'bold', lineHeight:'5vh'}}>*/}
-                {/*            <p>Name : <span style={{fontWeight:'500'}}>Lahiru</span> </p>*/}
-                {/*            <p>Age : <span style={{fontWeight:'500'}}>17</span> </p>*/}
-                {/*            <p>Address : <span style={{fontWeight:'500'}}>Kaluthara</span> </p>*/}
-                {/*            <p>Contact : <span style={{fontWeight:'500'}}>0761298256</span> </p>*/}
-                {/*        </List>*/}
-                {/*    </CardContent>*/}
-                {/*</Card>*/}
             </Box>
 
         </>
