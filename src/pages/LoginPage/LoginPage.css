@@ -1,10 +1,7 @@
-.backgroundImage {
-    width: 99.9vw;
-    height: 99.3vh;
+.body {
+    background-image: url("../../assets/Background.jpg");
     z-index: -1;
-    position: fixed;
 }
-
 .loginBtn {
     color: black !important;
     position: relative;

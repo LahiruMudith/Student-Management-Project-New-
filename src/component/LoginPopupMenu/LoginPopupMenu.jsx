@@ -14,6 +14,8 @@ import './LoginPopupMenu.css'
 import instance from "../../services/AxiosOrder.jsx";
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
+import Swal from 'sweetalert2'
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -45,8 +47,13 @@ export default function LoginPopupMenu() {
                 const token = (response.data.token)
                 if (token) {
                     localStorage.setItem('loginkey', token),
-                    alert("Login Successfully")
+                        Swal.fire({
+                            title: 'Login Successfully!',
+                            icon: 'success',
+                        })
+                    handleClose()
                     window.location.reload()
+
                 }
 
             }, (error) => {

@@ -12,6 +12,7 @@ import './RegisterPopupMenu.css'
 import {TextField} from "@mui/material";
 import {useState} from "react";
 import instance from "../../services/AxiosOrder.jsx";
+import Swal from "sweetalert2";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -43,8 +44,11 @@ export default function RegisterPopupMenu() {
         })
             .then((response) => {
                 console.log(response.data)
-                alert("Register Successfully")
-                window.location.reload()
+                Swal.fire({
+                    title: 'Register Successfully!',
+                    icon: 'success',
+                })
+                handleClose()
             }, (error) => {
                 console.log(error);
             });
@@ -88,10 +92,6 @@ export default function RegisterPopupMenu() {
                 <DialogActions>
                     <Button className={'popupRegisterButton'} onClick={Register}>
                         Register
-                        <ul style={{justifyContent:'space-around', }}>
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                        </ul>
                     </Button>
                 </DialogActions>
             </BootstrapDialog>

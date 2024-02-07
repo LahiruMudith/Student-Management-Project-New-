@@ -7,14 +7,12 @@ import {Link, Navigate, Route, Routes} from "react-router-dom";
 import AddStudentPage from "../AddStudentPage/AddStudentPage.jsx";
 import ViewStudentPage from "../ViewStudentPage/ViewStudentPage.jsx";
 
-
-
 export default function Dashboard() {
     const [value, setValue] = React.useState(0);
 
     const GetRoutes = (routes) => (
         routes.map((val) => (
-            <Route path={val.path} element={val.component}/>
+            <Route key={val.key} path={val.path} element={val.component}/>
         ))
 
     )
@@ -33,7 +31,6 @@ export default function Dashboard() {
                                             </IconButton>
                                         </li>
                                     </Link>
-
                                 ))
                             }
                         </ul>
@@ -48,11 +45,9 @@ export default function Dashboard() {
                 borderRadius: '20px',
                 padding: '20px'
             }}>
-                {/*<ViewStudentPage/>*/}
-                <Routes >
+                <Routes>
                     {GetRoutes(routes)}
                     <Route path={'*'} element={<Navigate to={'/viewStudent'}/>}/>
-                    {/*<Route path={'/viewStudent'} element={<ViewStudentPage/>}/>*/}
                 </Routes>
             </Box>
         </Box>
