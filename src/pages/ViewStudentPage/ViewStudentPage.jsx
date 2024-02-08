@@ -1,6 +1,9 @@
 import {Box, Card, CardContent, List} from "@mui/material";
 import {useEffect, useState} from "react";
 import instance from "../../services/AxiosOrder.jsx";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from "@mui/material/IconButton";
+import UpdateIcon from "../../assets/icon/updateStudent.png"
 
 export default function ViewStudentPage() {
     const [data, setData] = useState([])
@@ -19,7 +22,7 @@ export default function ViewStudentPage() {
             <Box sx={{display:'flex', flexWrap:"wrap", border:'2px solid red', height:'50px'}}>
                 {
                     data.map((val, index) => (
-                        <Card key={val.id} sx={{ minWidth: '22.5vw', height:'25vh', margin:'10px', borderRadius:'10px', boxShadow:'5', border:'1px solid #e10c0c'}}>
+                        <Card key={val.id} sx={{ minWidth: '22.5vw', height:'30vh', margin:'10px', borderRadius:'10px', boxShadow:'5', border:'1px solid #e10c0c'}}>
                             <CardContent>
                                 <List sx={{fontWeight:'bold', lineHeight:'5vh'}}>
                                     <p>Name : <span style={{fontWeight:'500'}}>{val.student_name}</span> </p>
@@ -28,6 +31,14 @@ export default function ViewStudentPage() {
                                     <p>Contact : <span style={{fontWeight:'500'}}>{val.student_contact}</span> </p>
                                 </List>
                             </CardContent>
+                            <Box sx={{position:'relative', bottom:'2vh', left:'38vh'}}>
+                                <IconButton sx={{color:'black'}}>
+                                    <DeleteIcon/>
+                                </IconButton>
+                                <IconButton sx={{color:'black'}}>
+                                    <img src={UpdateIcon} style={{width:'23px'}}/>
+                                </IconButton>
+                            </Box>
                         </Card>
                     ))
                 }
