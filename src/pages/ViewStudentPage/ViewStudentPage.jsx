@@ -4,6 +4,7 @@ import instance from "../../services/AxiosOrder.jsx";
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
 import UpdateIcon from "../../assets/icon/updateStudent.png"
+import StudentUpdateMenu from "../../component/StudentUpdateMenu/StudentUpdateMenu.jsx";
 
 export default function ViewStudentPage() {
     const [data, setData] = useState([])
@@ -30,15 +31,15 @@ export default function ViewStudentPage() {
                                     <p>Address : <span style={{fontWeight:'500'}}>{val.student_address}</span> </p>
                                     <p>Contact : <span style={{fontWeight:'500'}}>{val.student_contact}</span> </p>
                                 </List>
+                                <div style={{position:'relative', bottom:'1vh', left:'33vh'}}>
+                                    <IconButton sx={{color:'black'}}>
+                                        <StudentUpdateMenu/>
+                                    </IconButton>
+                                    <IconButton sx={{color:'black'}}>
+                                        <DeleteIcon/>
+                                    </IconButton>
+                                </div>
                             </CardContent>
-                            <Box sx={{position:'relative', bottom:'2vh', left:'38vh'}}>
-                                <IconButton sx={{color:'black'}}>
-                                    <DeleteIcon/>
-                                </IconButton>
-                                <IconButton sx={{color:'black'}}>
-                                    <img src={UpdateIcon} style={{width:'23px'}}/>
-                                </IconButton>
-                            </Box>
                         </Card>
                     ))
                 }

@@ -7,6 +7,7 @@ import {Link, Navigate, Route, Routes} from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import instance from "../../services/AxiosOrder.jsx";
 import Swal from 'sweetalert2'
+import StudentUpdateMenu from "../../component/StudentUpdateMenu/StudentUpdateMenu.jsx";
 
 export default function Dashboard() {
     const [value, setValue] = React.useState(0);
@@ -57,6 +58,7 @@ export default function Dashboard() {
                                 ))
                             }
                         </ul>
+                <StudentUpdateMenu/>
                 <IconButton
                     onClick={() => logoutClick()}
                     sx={{fontSize: '1.4vw', fontWeight: 'bold', color: 'white', position:'fixed', bottom:'3vh', right:'78vw'}}>

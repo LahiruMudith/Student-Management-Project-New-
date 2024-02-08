@@ -97,9 +97,9 @@ export default function RegisterPopupMenu() {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent dividers>
-                    <TextField className={'textFeild'} onChange={(val) => setName(val.target.value)} type={"text"} label="Name" variant="standard" />
-                    <TextField className={'textFeild'} onChange={(val) => setEmail(val.target.value)} type={"text"} label="Email" variant="standard" />
-                    <TextField className={'textFeild'} onChange={(val) => setPassword(val.target.value)} label="Password" type={"password"} variant="standard" />
+                    <TextField className={'textFeild'} required onChange={(val) => setName(val.target.value)} type={"text"} label="Name" variant="standard" />
+                    <TextField className={'textFeild'} required onChange={(val) => setEmail(val.target.value)} type={"text"} label="Email" variant="standard" />
+                    <TextField className={'textFeild'} required onChange={(val) => setPassword(val.target.value)} label="Password" type={"password"} variant="standard" />
                 </DialogContent>
                 <DialogActions>
                     <Button className={'popupRegisterButton'} onClick={Register}>

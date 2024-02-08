@@ -92,8 +92,8 @@ export default function LoginPopupMenu() {
                             <CloseIcon />
                         </IconButton>
                         <DialogContent dividers>
-                            <TextField className={'textFeild'} onChange={(val) => setEmail(val.target.value)} type={"text"} label="Email" variant="standard" />
-                            <TextField className={'textFeild'} onChange={(val) => setPassword(val.target.value)} type={"password"} label="Password" variant="standard" />
+                            <TextField className={'textFeild'} required onChange={(val) => setEmail(val.target.value)} type={"text"} label="Email" variant="standard" />
+                            <TextField className={'textFeild'} required onChange={(val) => setPassword(val.target.value)} type={"password"} label="Password" variant="standard" />
                         </DialogContent>
                         <DialogActions>
                             <Button className={'LoginBtn'} onClick={() => Login()}>
