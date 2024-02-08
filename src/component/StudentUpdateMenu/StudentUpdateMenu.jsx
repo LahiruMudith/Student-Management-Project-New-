@@ -8,22 +8,50 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import UpdateIcon from "../../assets/icon/updateStudent.png";
 import IconButton from "@mui/material/IconButton";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import instance from "../../services/AxiosOrder.jsx";
 
-export default function StudentUpdateMenu() {
+export default function StudentUpdateMenu({Name, Age, Address, Contact, id}) {
     const [open, setOpen] = React.useState(false);
-    const [name, setName] = useState('Name')
-    const [age, setAge] = useState('Age')
-    const [address, setAddress] = useState('Address')
-    const [contact, setContact] = useState('Contact')
+    const [name, setName] = useState(Name)
+    const [age, setAge] = useState(Age)
+    const [address, setAddress] = useState(Address)
+    const [contact, setContact] = useState(Contact)
+    // setName(Name)
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (Sid) => {
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
     };
+
+    const update = () => {
+        instance.put(`/student/update/${id}`, {
+            student_name:name,
+            student_age:age,
+            student_address:address,
+            student_contact:contact
+        }).then((response) => {
+            window.location.reload()
+        })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    // const getAll = () => {
+    //     useEffect(() => {
+    //         instance({
+    //             method: "get",
+    //             url: "/student/getAll",
+    //         }).then(function (response) {
+    //             setData(response.data)
+    //         });
+    //     }, []);
+    // }
+
 
     return (
         <React.Fragment>
@@ -33,54 +61,46 @@ export default function StudentUpdateMenu() {
             <Dialog
                 open={open}
                 onClose={handleClose}
-                PaperProps={{
-                    component: 'form',
-                    onSubmit: (event) => {
-                        event.preventDefault();
-                        const formData = new FormData(event.currentTarget);
-                        const formJson = Object.fromEntries(formData.entries());
-                        const email = formJson.email;
-                        console.log(email);
-                        handleClose();
-                    },
-                }}
+
+
             >
-                {/*<DialogTitle>Subscribe</DialogTitle>*/}
                 <DialogContent>
                     <DialogContentText>
                         Please Bouble Check Your Update Details !
                     </DialogContentText>
                     <TextField
                         sx={{margin:'10px', width:'35vw', marginTop:'25px'}}
-                        autoFocus
-                        label={name}
-                        type="text"
+                        value={name}
                         variant="outlined"
+                        onChange={(event) => setName(event.target.value)}
                     />
                     <TextField
                         sx={{margin:'10px', width:'35vw'}}
-                        autoFocus
-                        label={age}
-                        type="text"
+                        required
+                        value={age}
+                        type="number"
                         variant="outlined"
+                        onChange={(event) => setAge(event.target.value)}
                     />
                     <TextField
                         sx={{margin:'10px', width:'35vw'}}
-                        autoFocus
-                        label={address}
+                        required
+                        value={address}
                         type="text"
                         variant="outlined"
+                        onChange={(event) => setAddress(event.target.value)}
                     />
                     <TextField
                         sx={{margin:'10px', width:'35vw'}}
-                        autoFocus
-                        label={contact}
+                        required
+                        value={contact}
                         type="text"
                         variant="outlined"
+                        onChange={(event) => setContact(event.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button type="text">Update</Button>
+                    <Button type="text" onClick={() => update(id)}>Update</Button>
                     <Button onClick={handleClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>

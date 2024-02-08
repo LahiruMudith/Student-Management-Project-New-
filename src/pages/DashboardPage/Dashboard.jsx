@@ -58,7 +58,6 @@ export default function Dashboard() {
                                 ))
                             }
                         </ul>
-                <StudentUpdateMenu/>
                 <IconButton
                     onClick={() => logoutClick()}
                     sx={{fontSize: '1.4vw', fontWeight: 'bold', color: 'white', position:'fixed', bottom:'3vh', right:'78vw'}}>
@@ -66,11 +65,14 @@ export default function Dashboard() {
                 </IconButton>
 
             </Box>
-            <Box sx={{
+            <Box
+                component="main"
+                sx={{
+                flexGrow: 1, p: 3,
                 backgroundColor: 'white',
                 width: '72.5vw',
-                height: '87vh',
-                position: 'fixed',
+                height: '86.5vh',
+                position: 'relative',
                 left: '23vw',
                 top: '5vh',
                 borderRadius: '20px',
