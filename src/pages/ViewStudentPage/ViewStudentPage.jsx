@@ -40,7 +40,8 @@ export default function ViewStudentPage() {
             showDenyButton: true,
             showCancelButton: true,
             showConfirmButton:false,
-            denyButtonText: `Delete`
+            denyButtonText: `Yes`,
+            cancelButtonText:'No'
         }).then((result) => {
             if (result.isDenied) {
                 instance.delete(`/student/delete/${id}`)
