@@ -6,7 +6,19 @@ import IconButton from "@mui/material/IconButton";
 import UpdateIcon from "../../assets/icon/updateStudent.png"
 import StudentUpdateMenu from "../../component/StudentUpdateMenu/StudentUpdateMenu.jsx";
 import {MutatingDots} from "react-loader-spinner";
+import Swal from "sweetalert2";
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-start",
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: false,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
 
 export default function ViewStudentPage() {
     const [data, setData] = useState([])
@@ -21,6 +33,31 @@ export default function ViewStudentPage() {
             setLoader(false)
         });
     }, []);
+
+    const studentDelete = (id) => {
+        Swal.fire({
+            title: "Do you want Delete This Student?",
+            showDenyButton: true,
+            showCancelButton: true,
+            showConfirmButton:false,
+            denyButtonText: `Delete`
+        }).then((result) => {
+            if (result.isDenied) {
+                instance.delete(`/student/delete/${id}`)
+                    .then(response => {
+                        Toast.fire({
+                            icon: "success",
+                            title: "Delete successfully"
+                        }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                window.location.reload()
+                            }
+                        });
+                    })
+            }
+        });
+    }
 
     return (
         <>
@@ -53,7 +90,9 @@ export default function ViewStudentPage() {
                                                     id={val.id}
                                                 />
                                             </IconButton>
-                                            <IconButton sx={{color: 'black'}}>
+                                            <IconButton sx={{color: 'black'}}
+                                                        onClick={() => studentDelete(val.id)}
+                                            >
                                                 <DeleteIcon/>
                                             </IconButton>
                                         </Box>

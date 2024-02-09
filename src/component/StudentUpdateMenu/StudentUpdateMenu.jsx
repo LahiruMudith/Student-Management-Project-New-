@@ -10,6 +10,20 @@ import UpdateIcon from "../../assets/icon/updateStudent.png";
 import IconButton from "@mui/material/IconButton";
 import {useEffect, useState} from "react";
 import instance from "../../services/AxiosOrder.jsx";
+import Swal from "sweetalert2";
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-start",
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: false,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
 
 export default function StudentUpdateMenu({Name, Age, Address, Contact, id}) {
     const [open, setOpen] = React.useState(false);
@@ -34,7 +48,15 @@ export default function StudentUpdateMenu({Name, Age, Address, Contact, id}) {
             student_address:address,
             student_contact:contact
         }).then((response) => {
-            window.location.reload()
+            handleClose()
+            Toast.fire({
+                icon: "success",
+                title: "Update successfully"
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location.reload()
+                }
+            });
         })
             .catch((error) => {
                 console.error(error);
